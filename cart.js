@@ -1,17 +1,35 @@
 // ===================== Add Button Phone ==================== // 
-const addButton = document.getElementById("btn-add");
-addButton.addEventListener("click",function(){
+const phoneAddButton = document.getElementById("btn-add");
+phoneAddButton.addEventListener("click",function(){
   getInputValue("input-value");
-  document.getElementById("phone-price").innerText =  increaseProductPrice("input-value");
+  getIncreasePhonePrice("phone-price");
   subTotal()
   totalAmount()
 });
 
 // ===================== Minus Button Phone ==================== // 
-const minusButton = document.getElementById("btn-minus");
-minusButton.addEventListener("click",function(){
-  getInputValue2("input-value")
-  document.getElementById("phone-price").innerText =  increaseProductPrice("input-value", -1)
+const phoneMinusButton= document.getElementById("btn-minus");
+phoneMinusButton.addEventListener("click",function(){
+  getInputValueMinus("input-value")
+  getDecreasePhonePrice("phone-price")
+  subTotal()
+  totalAmount()
+});
+
+// ================== Add Button Casing =================== //
+const addButtonCasing = document.getElementById("btn-add-casing");
+addButtonCasing.addEventListener("click",function(){
+  getInputValue("input-value-casing");
+  getIncreaseCasingPrice("casing-price")
+  subTotal()
+  totalAmount()
+});
+
+// ================== Minus Button Casing =================== //
+const minusButtonCasing  = document.getElementById("btn-minus-casing");
+minusButtonCasing.addEventListener("click",function(){
+  getInputValueMinus("input-value-casing");
+  getDecreaseCasingPrice("casing-price")
   subTotal()
   totalAmount()
 });
@@ -21,29 +39,23 @@ function getInputValue(id){
   const value = parseFloat(document.getElementById(id).value++);
   return value;
 };
-function getInputValue2(id){
+function getInputValueMinus(id){
   const value = parseFloat(document.getElementById(id).value--);
   return value;
 };
-
-// ================== Add Button Casing =================== //
-const addButtonCasing = document.getElementById("btn-add-casing");
-addButtonCasing.addEventListener("click",function(){
-  getInputValue("input-value-casing");
-  document.getElementById("casing-price").innerText =  increaseProductPrice2("input-value-casing");
-  subTotal()
-  totalAmount()
-});
-
-// ================== Minus Button Casing =================== //
-const minusButtonCasing  = document.getElementById("btn-minus-casing");
-minusButtonCasing.addEventListener("click",function(){
-  // const value = parseFloat(document.getElementById("input-value-casing").value--);
-  getInputValue2("input-value-casing");
-  document.getElementById("casing-price").innerText = increaseProductPrice2("input-value-casing", -1);
-  subTotal()
-  totalAmount()
-});
+// ============  Get Price Value All ================ //
+function getIncreasePhonePrice(id){
+  document.getElementById(id).innerText =  increaseProductPrice("input-value");
+}
+function getDecreasePhonePrice(id){
+  document.getElementById(id).innerText =  increaseProductPrice("input-value",-1);
+}
+function getIncreaseCasingPrice(id){
+  document.getElementById(id).innerText =  increaseProductPrice2("input-value-casing");
+}
+function getDecreaseCasingPrice(id){
+  document.getElementById(id).innerText =  increaseProductPrice2("input-value-casing",-1);
+}
 
 // =============== Increase product price ================== // 
 const currentPrice = document.getElementById("phone-price").innerText;
